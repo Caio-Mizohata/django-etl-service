@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Página de download{% endblock %}
+
+{% block page_icon %}
+<link rel="icon" href="{% static 'icons/download.png' %}" type="image/png">
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/download.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <header class="header">
+    <div class="logo">Gestão de Dados</div>
+    <nav class="nav">
+      <a href="{% url 'cities' %}">Voltar</a>
+      <a href="{% url 'home' %}">Home</a>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <div class="floating-elements">
+      <div class="floating-circle circle-1"></div>
+      <div class="floating-circle circle-2"></div>
+      <div class="floating-circle circle-3"></div>
+    </div>
+
+    <div class="content-left">
+      <h1 class="main-title">
+        Opções<br><span class="highlight">de Download!</span>
+      </h1>
+      <p class="description">
+        Escolha uma das opções para download:
+      </p>
+      <p>1 - Baixar dados dos <strong>municípios com população acima da média geral</strong></p>
+      <p>2 - Baixar dados <strong>completos dos municípios</strong></p>
+      
+      <div class="download-options mt-4">
+        <a href="{% url 'download_csv_1' %}" class="btn btn-primary me-2">Download CSV - Opção 1</a>
+        <a href="{% url 'download_csv_2' %}" class="btn btn-success">Download CSV - Opção 2</a>
+      </div>
+    </div>
+
+    <div class="illustration">
+      <div class="laptop">
+        <div class="laptop-screen">
+          <div class="download-icon">
+            <div class="download-arrow"></div>
+          </div>
+          <div class="download-text">Baixando</div>
+        </div>
+      </div>
+
+      <div class="person-1"></div>
+      <div class="person-2"></div>
+      <div class="gear gear-1"></div>
+      <div class="gear gear-2"></div>
+      <div class="plant plant-1"></div>
+      <div class="plant plant-2"></div>
+    </div>
+  </main>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{% static 'js/download_progress.js' %}"></script>
+{% endblock %}

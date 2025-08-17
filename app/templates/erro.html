@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Página de erro{% endblock %}
+
+{% block page_icon %}
+    <link rel="icon" href="{% static 'icons/erro.png' %}" type="image/png" alt="Default-icon">
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/erro.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow card-custom-border">
+        <div class="card-header text-white header-green">
+            <h2 class="mb-0">
+                <i class="bi bi-exclamation-octagon-fill"></i> Ocorreu um erro
+            </h2>
+        </div>
+        <div class="card-body">
+            <div class="alert alert-custom" role="alert">
+                <h4 class="alert-heading">
+                    {% if mensagem %}
+                        {{ mensagem }}
+                    {% else %}
+                        Erro no processamento dos dados
+                    {% endif %}
+                </h4>
+                
+                <hr>
+                
+                <p class="mb-0">
+                    <strong>Possíveis causas:</strong>
+                    <ul>
+                        {% if erro_download %}
+                            <li>Problemas na geração do arquivo</li>
+                            <li>Formato de dados inválido</li>
+                            <li>Permissões insuficientes no servidor</li>
+                            <li>Limite de tempo excedido</li>
+                        {% else %}
+                            <li>Falha na conexão com o Wikidata ou IBGE</li>
+                            <li>Estado inválido selecionado ou com campo vazio</li>
+                            <li>Problemas no processamento dos dados</li>
+                            <li>Timeout nas requisições externas</li>
+                            <li>Erro de lógica no código</li>
+                            <li>Variáveis ou funções com nomes diferentes ou trocadas</li>
+                        {% endif %}
+                    </ul>
+                </p>
+            </div>
+            
+            <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
+                <a href="{% url 'home' %}" class="btn btn-primary">
+                    <i class="bi bi-house-door"></i> Página inicial
+                </a>
+            </div>
+            
+            {% if debug and detalhes %}
+            <div class="mt-4 p-3 debug-box rounded">
+                <h5>Detalhes técnicos (debug):</h5>
+                <pre class="debug-pre">{{ detalhes }}</pre>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

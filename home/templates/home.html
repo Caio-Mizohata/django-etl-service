@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_icon %}
+<link rel="icon" href="{% static 'icons/home.png' %}" type="image/png" alt="home-icon">
+{% endblock %}
+
+{% block title %} Página inicial {% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="modern-hero">
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+    </div>
+    
+    <div class="content-container">
+        <div class="hero-content">
+            <h1 class="main-title">Trabalho de gestão de dados 2</h1>
+            <p class="second-title">ETL + Django Framework</p>
+            <p class="subtitle">Dupla: Caio Mizohata e Guilherme de Barros</p>
+            
+            <div class="cta-section">
+                <a href="{% url 'cities' %}" class="cta-link">Consultar dados</a>
+            </div>
+        </div>
+        
+        <div class="floating-elements">
+            <div class="float-circle circle-1"></div>
+            <div class="float-circle circle-2"></div>
+            <div class="float-square"></div>
+        </div>
+    </div>
+</main>
+
+<footer class="modern-footer">
+    <div class="footer-content">
+        <p>&copy; 2025 Caio Mizohata e Guilherme de Barros - Fatec Shunji Nishimura Pompéia</p>
+    </div>
+</footer>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+{% endblock %}

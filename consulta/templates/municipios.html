@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block page_icon %}
+<link rel="icon" href="{% static 'icons/municipios.png' %}" type="image/png" alt="municipios-icon">
+{% endblock %}
+
+{% block title %}Página principal{% endblock %}
+
+{% block extra_css %}
+<!-- Fontes específicas desta página -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- CSS específico desta página -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" href="{% static 'css/municipios.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container mt-4 animate-fade-in">
+    <div class="page-header">
+        <h1><i class="fas fa-map-marked-alt"></i> Tabela de municípios</h1>
+        <a href="{% url 'download_page' %}" class="btn-export">
+            <i class="fas fa-file-csv"></i>Exportar para CSV
+        </a>
+    </div>
+
+    <div class="main-card">
+        <div class="card-header-custom">
+            <div class="card-header-info">
+                {% if state_code %}
+                <span class="state-info"><i class="fas fa-table"></i>Estado: {{ state_code }}</span>
+                {% endif %}
+                <div class="data-sources">
+                    <small><i class="fas fa-database"></i>IBGE/Wikidata</small>
+                    <small><i class="fas fa-clock"></i>{% now "d/m/Y H:i" %}</small>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card-body-custom">
+            <div class="table-responsive">
+                <table class="table-modern" id="tabela-municipios">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-center">#</th>
+                            <th scope="col" class="text-center">Nome</th>
+                            <th scope="col" class="text-center">Código IBGE</th>
+                            <th scope="col" class="text-center">População</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if municipios %}
+                            {% for municipio in municipios %}
+                            <tr>
+                                <th scope="row" class="text-center counter-cell">{{ forloop.counter }}</th>
+                                <td>
+                                    <div class="municipio-name">{{ municipio.nome }}</div>
+                                    {% if municipio.microrregiao %}
+                                    <div class="municipio-micro">{{ municipio.microrregiao.nome }}</div>
+                                    {% endif %}
+                                </td>
+                                <td class="text-center">
+                                    <span class="codigo-badge">{{ municipio.codigo_ibge }}</span>
+                                </td>
+                                <td class="text-end" data-order="{{ municipio.populacao|default:'-1' }}">
+                                    {% if municipio.populacao != "N/A" %}
+                                    <span class="populacao-cell">{{ municipio.populacao|floatformat:0|intcomma }}</span>
+                                    <small class="populacao-unit">hab.</small>
+                                    {% else %}
+                                    <span class="text-na">N/A</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="4" class="empty-state">Nenhum município encontrado.</td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card-footer-custom">
+            <div class="footer-info">
+                <span class="total-count">
+                    <i class="fas fa-list-ol"></i>
+                    Total: {{ municipios|length }} municípios
+                </span>
+                <small class="data-attribution">
+                    <i class="fas fa-code-branch"></i>
+                    Dados combinados da API do IBGE e Wikidata
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<!-- JS específico desta página -->
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+<script src="{% static 'js/municipios_datatable.js' %}"></script>
+{% endblock %}
