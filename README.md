@@ -2,6 +2,12 @@
 
 Aplicação web desenvolvida com **Django** para **Extrair, Transformar e Visualizar (ETL)** dados **demográficos e geográficos** de municípios do Brasil, utilizando **APIs públicas**.  
 
+## 👨‍💻 Autores
+- **Caio Mizohata**
+- **Guilherme de Barros**
+
+--- 
+
 ## 📖 Sobre o Projeto
 
 A aplicação extrai dados de fontes públicas (API do IBGE e Wikidata), realiza a transformação e limpeza desses dados (como normalização de texto e combinação de fontes), e os disponibiliza para:
@@ -9,8 +15,6 @@ A aplicação extrai dados de fontes públicas (API do IBGE e Wikidata), realiza
 2.  **Download** em formato CSV, com opções de dados filtrados ou completos.
 
 Este projeto foi desenvolvido como parte da disciplina de `[Gestão de dados]` do curso de `[Big Data no Agronegócio]` na `[Fatec Pompeia Shunji Nishimura]`.
-
----
 
 ## 📂 Estrutura do Projeto
 
