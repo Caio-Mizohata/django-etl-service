@@ -2,8 +2,6 @@
 
 Aplicação web desenvolvida com **Django** para **Extrair, Transformar e Visualizar (ETL)** dados **demográficos e geográficos** de municípios do Brasil, utilizando **APIs públicas**.  
 
-<br>
-
 ## 📖 Sobre o Projeto
 
 A aplicação extrai dados de fontes públicas (API do IBGE e Wikidata), realiza a transformação e limpeza desses dados (como normalização de texto e combinação de fontes), e os disponibiliza para:
