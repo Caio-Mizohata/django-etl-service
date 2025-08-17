@@ -10,7 +10,7 @@ Aplicação web desenvolvida com **Django** para **Extrair, Transformar e Visual
 
 ## 📖 Sobre o Projeto
 
-A aplicação extrai dados de fontes públicas (API do IBGE e Wikidata), realiza a transformação e limpeza desses dados (como normalização de texto e combinação de fontes), e os disponibiliza para:
+O projeto consinste em uma aplicação que extrai dados de fontes públicas (API do IBGE e Wikidata), realiza a transformação e limpeza desses dados (como normalização de texto e combinação de fontes), e os disponibiliza para:
 1.  **Visualização** em uma interface web amigável.
 2.  **Download** em formato CSV, com opções de dados filtrados ou completos.
 
